@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('numbers', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
+            $table->foreignUuid('contact_id')->constrained('contacts')->cascadeOnDelete();
+            $table->enum('type',  ['Family', 'Personal', 'Work', 'Other'])->default('Personal');
+            $table->decimal('phone_number', 10, 0)->unique();
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('numbers');
     }
 };

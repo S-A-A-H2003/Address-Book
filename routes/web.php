@@ -18,12 +18,6 @@ Route::get('home', function () {
 Route::get('/contacts', [ContactsController::class, 'index'])->name('contacts.index');
 Route::get('/contacts/create', [ContactsController::class, 'create'])->name('contacts.create');
 Route::post('/contacts', [ContactsController::class, 'store'])->name('contacts.store');
-Route::get('/contacts/search/name', [ContactsController::class, 'searchByNameview'])->name('contacts.search.name.view');
-Route::post('/contacts/search/name', [ContactsController::class, 'searchByName'])->name('contacts.search.name');
-Route::get('/contacts/search/phone', [ContactsController::class, 'searchByPhoneview'])->name('contacts.search.phone.view');
-Route::post('/contacts/search/phone', [ContactsController::class, 'searchByPhone'])->name('contacts.search.phone');
-Route::get('/contacts/delete/name', [ContactsController::class, 'destroyByNameview'])->name('contacts.delete.name.view');
-Route::delete('/contacts/delete/name', [ContactsController::class, 'destroyByName'])->name('contacts.delete.name');
-Route::get('/contacts/delete/phone', [ContactsController::class, 'destroyByPhoneview'])->name('contacts.delete.phone.view');
-Route::delete('/contacts/delete/phone', [ContactsController::class, 'destroyByPhone'])->name('contacts.delete.phone');
+Route::delete('/contacts/delete/{contact}', [ContactsController::class, 'destroy'])->name('contacts.destroy');
+Route::get('/contacts/{contact}', [ContactsController::class, 'show'])->name('contacts.show');
 Route::get('/exit', [ContactsController::class, 'exit'])->name('contacts.exit');
